@@ -1,6 +1,6 @@
 name: Create Dev Pull Request When a PR against master is created
 on: 
-  pull-request:
+  pull_request:
     types:
       - opened
     branches:
