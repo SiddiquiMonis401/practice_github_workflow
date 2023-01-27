@@ -31,4 +31,4 @@ jobs:
       - name: Building project
         run: npm run build
       - name: deploying
-        run: echo "${{ toJSON(github.ref_name) }}"
+        run: echo "${{ github.ref_name }}"

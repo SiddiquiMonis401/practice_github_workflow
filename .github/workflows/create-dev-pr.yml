@@ -20,5 +20,5 @@ jobs:
         commit-message: 'Automated pull request'
         title: 'Automated pull request'
         labels: 'automated'
-        branch: '${{ github.event.ref_name }}'
+        branch: ${{ github.ref_name }}
         base: 'master'
