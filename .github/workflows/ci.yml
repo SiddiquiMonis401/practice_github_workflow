@@ -11,7 +11,7 @@ jobs:
       - name: Run_Lint
         run: npm run lint
   test:
-    need: lint
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout_Repo
