@@ -1,15 +1,24 @@
-name: Create Dev Pull Request When a PR against master is created
-on: 
+name: Create Pull Request
+
+on:
   pull_request:
-    types:
-      - opened
     branches:
-      - 'master'
+      - master
+
 jobs:
-  create-dev-PR:
+  create-pull-request:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
-      - name: Create Pull Request
-        run: echo "Will use the PR create workflow here" 
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'Automated pull request'
+        title: 'Automated pull request'
+        labels: 'automated'
+        branch: '${{ github.event.ref_name }}'
+        base: 'master'
