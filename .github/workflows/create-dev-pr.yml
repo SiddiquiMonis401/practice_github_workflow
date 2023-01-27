@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    
+    - name: Set source branch variable
+      run: echo "::set-env name=SOURCE_BRANCH::${{ pull_request.head.ref }}"
 
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
@@ -20,5 +23,5 @@ jobs:
         commit-message: 'Automated pull request'
         title: 'Automated pull request'
         labels: 'automated'
-        branch: ${{ pull_request.head.ref }}
+        branch: ${{ SOURCE_BRANCH }}
         base: 'develop'
