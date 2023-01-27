@@ -20,5 +20,5 @@ jobs:
         commit-message: 'Automated pull request'
         title: 'Automated pull request'
         labels: 'automated'
-        branch: ${{ github.ref_name }}
+        branch: echo "${{ toJSON(github) }}"
         base: 'master'
