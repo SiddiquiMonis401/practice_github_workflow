@@ -12,6 +12,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    
 
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
@@ -20,5 +21,5 @@ jobs:
         commit-message: 'Automated pull request'
         title: 'Automated pull request'
         labels: 'automated'
-        branch: ${{ env.GITHUB_HEAD_REF }}
+        branch: 'master'
         base: 'develop'
