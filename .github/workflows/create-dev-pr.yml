@@ -1,0 +1,28 @@
+name: Create Dev Pull Request When a PR against master is created
+on: 
+  pull-request:
+    types:
+      - opened
+    branches:
+      - 'master'
+jobs:
+  create-dev-PR:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the Action
+        uses: devops-infra/action-pull-request@v0.5.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: ${{ github.headref }}
+          target_branch: develop
+          title: My pull request
+          body: "**Automated pull request**"
+          reviewer: octocat
+          assignee: octocat
+          label: enhancement
+          milestone: My milestone
+          draft: false
+          new_string: "** Automatic pull request**"
+          get_diff: true
+          ignore_users: "dependabot"
+          allow_no_diff: false
