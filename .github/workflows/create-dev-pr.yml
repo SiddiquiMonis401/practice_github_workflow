@@ -12,8 +12,4 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v3
       - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v4
-        with:
-          branch: ${{ github.head_ref }}
-          base: develop 
+        run: echo "Will use the PR create workflow here" 
