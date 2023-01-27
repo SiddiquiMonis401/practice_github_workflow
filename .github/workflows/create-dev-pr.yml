@@ -11,20 +11,9 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
-      - name: Run the Action
-        uses: devops-infra/action-pull-request@v0.5.3
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: ${{ github.headref }}
-          target_branch: develop
-          title: My pull request
-          body: "**Automated pull request**"
-          reviewer: octocat
-          assignee: octocat
-          label: enhancement
-          milestone: My milestone
-          draft: false
-          new_string: "** Automatic pull request**"
-          get_diff: true
-          ignore_users: "dependabot"
-          allow_no_diff: false
+          branch: ${{ github.head_ref }}
+          base: develop 
