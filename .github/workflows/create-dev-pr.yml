@@ -1,28 +1,18 @@
-name: Create Dev Pull Request When a PR against master is created
-on: 
-  pull-request:
-    types:
-      - opened
+name: Create production promotion pull request
+on:
+  pull_request:
+    types: [opened, reopened]
     branches:
-      - 'master'
+      - master
 jobs:
-  create-dev-PR:
+  Create_Pull_Request:
     runs-on: ubuntu-latest
     steps:
-      - name: Run the Action
-        uses: devops-infra/action-pull-request@v0.5.3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: ${{ github.headref }}
-          target_branch: develop
-          title: My pull request
-          body: "**Automated pull request**"
-          reviewer: octocat
-          assignee: octocat
-          label: enhancement
-          milestone: My milestone
-          draft: false
-          new_string: "** Automatic pull request**"
-          get_diff: true
-          ignore_users: "dependabot"
-          allow_no_diff: false
+      - name: Create pull request using github token
+      - run: |
+              curl -H "Authorization: token ${{secret.JWT_TOKEN}}" -X POST -d '{
+              "title": "My pull request"
+              "head": "branch-name"
+              "base": "master"
+              "body": "Description of the changes being made"
+              }' https://api.github.com/repos/SiddiquiMonis401/practice_github_workflow/pulls 
