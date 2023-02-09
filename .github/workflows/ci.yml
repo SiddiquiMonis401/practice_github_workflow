@@ -32,3 +32,14 @@ jobs:
         run: npm run build
       - name: deploying
         run: echo "${{ github.ref_name }}"
+  Create_Pull_Request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create pull request using github token
+      - run: |
+              curl -H "Authorization: token ${{secret.JWT_TOKEN}}" -X POST -d '{
+              "title": "My pull request"
+              "head": "branch-name"
+              "base": "master"
+              "body": "Description of the changes being made"
+              }' https://api.github.com/repos/SiddiquiMonis401/practice_github_workflow/pulls
